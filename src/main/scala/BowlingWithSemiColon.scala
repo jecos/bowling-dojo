@@ -2,7 +2,6 @@ import scala.annotation.tailrec
 
 object BowlingWithSemiColon {
 
-
   @tailrec
   def compute(scores: Seq[Int], acc: Int = 0): Int = scores match {
     case 10 :: s1 :: s2 :: Nil => acc + 10 + s1 + s2 // Handle Bonus Strike
