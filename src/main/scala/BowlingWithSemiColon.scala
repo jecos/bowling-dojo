@@ -2,18 +2,15 @@ import scala.annotation.tailrec
 
 object BowlingWithSemiColon {
 
-  def compute_iter1(scores: Seq[(Int, Int)]): Int = scores.map(computeFrame).sum
-
-  def computeFrame(frame: (Int, Int)): Int = frame._1 + frame._2
 
   @tailrec
-  def compute(scores: Seq[(Int, Int)], acc: Int = 0): Int = scores match {
+  def compute(scores: Seq[Int], acc: Int = 0): Int = scores match {
     case Nil => acc
-    case (10, _) :: f1 :: f2 :: Nil => acc + 10 + computeFrame(f1) + computeFrame(f2) // Handle Last Strike
-    case (10, _) :: f1 :: f2 :: t => compute(f1 :: f2 :: t, acc + 10 + computeFrame(f1) + computeFrame(f2)) // Handle Strike
-    case (a, b) :: f :: Nil if a + b == 10 => acc + 10 + computeFrame(f) // Handle Last Spare
-    case (a, b) :: f :: t if a + b == 10 => compute(f :: t, acc + 10 + computeFrame(f)) // Handle Spare
-    case f :: t => compute(t, acc + computeFrame(f)) //Handle default
+    case 10 :: s1 :: s2 :: Nil => acc + 10 + s1 + s2 // Handle Bonus Strike
+    case 10 :: s1 :: s2 :: t => compute(s1 :: s2 :: t, acc + 10 + s1 + s2) // Handle Strike
+    case a :: b :: c :: Nil if a + b == 10 => acc + 10 + c // Handle Bonus Spare
+    case a :: b :: c :: t if a + b == 10 => compute(c :: t, acc + 10 + c) // Handle Spare
+    case a :: b :: t => compute(t, acc + a + b) //Handle default
   }
 
 
