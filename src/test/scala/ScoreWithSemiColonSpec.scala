@@ -1,10 +1,11 @@
-import Bowling.compute
+import ScoreWithSemiColon.compute
+
 import org.scalatest.Matchers._
 import org.scalatest.WordSpec
 
-class BowlingSpec extends WordSpec {
+class ScoreWithSemiColonSpec extends WordSpec {
 
-  "Bowling" when {
+  "ScoreWithSemiColon" when {
     "compute" must {
       "Sum score" in {
         val game: Seq[Int] = Seq(1, 5, 3, 6, 2, 6, 5, 4, 7, 2, 9, 0, 3, 5, 6, 3, 8, 1, 4, 5)
@@ -56,6 +57,7 @@ class BowlingSpec extends WordSpec {
         compute(gameWithStrikes) shouldBe 110
       }
     }
+
   }
 
 }

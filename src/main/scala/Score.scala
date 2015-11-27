@@ -1,6 +1,6 @@
 import scala.annotation.tailrec
 
-object Bowling {
+object Score {
 
   @tailrec
   def compute(scores: Seq[(Int)], acc: Int = 0): Int = scores match {
